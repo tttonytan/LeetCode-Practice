@@ -206,7 +206,7 @@ public class Main_Package {
         return dp[n];
     }
 //  LeetCode 139.单词拆分
-//    public static boolean wordBreak(String s, List<String> wordDict) {
+    public static boolean wordBreak(String s, List<String> wordDict) {
 //        int s_length = s.length();
 //        boolean[] dp = new boolean[s_length+1];
 //        dp[0] = true;
@@ -217,5 +217,5 @@ public class Main_Package {
 //                if(wordDict.contains(word) && dp[i])
 //            }
 //        }
-//    }
+    }
 }
