@@ -13,9 +13,12 @@ public class Main_DP {
 //        int[] nums = new int[]{1,5,11,5};
 //        boolean res = canPartition2(nums);
 //        System.out.println(5/2);
-        int[] stones = new int[]{2,7,4,1,8,1};
-        int res = lastStoneWeightII(stones);
-        System.out.println(res);
+//        int[] stones = new int[]{2,7,4,1,8,1};
+//        int res = lastStoneWeightII(stones);
+//        System.out.println(res);
+        int[] v = new int[]{2,3,2};
+//        System.out.println(rob(v));
+        System.out.println(rob2(v));
     }
     public static int numTrees(int n){
 //        1. 确定dp数组及含义
@@ -107,5 +110,28 @@ public class Main_DP {
         }
         int retain = Arrays.stream(stones).sum() - dp[target];
         return retain - dp[target];
+    }
+
+//  LeetCode 198. 打家劫舍
+    public static int rob(int[] nums) {
+        int[] dp = new int[nums.length];
+        if(nums.length == 1) return nums[0];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i-2]+nums[i], dp[i-1]);
+        }
+        return dp[nums.length-1];
+    }
+
+
+//  LeetCode 213. 打家劫舍 II
+    public static int rob2(int[] nums) {
+        int[] s1 = Arrays.copyOfRange(nums, 1, nums.length);
+        int result1 = rob(s1);
+        int[] s2 = Arrays.copyOfRange(nums, 0, nums.length-1);
+        int result2 = rob(s2);
+        return Math.max(result1, result2);
     }
 }

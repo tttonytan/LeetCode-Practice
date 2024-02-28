@@ -1,6 +1,7 @@
 package dynamic_programming;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -33,7 +34,10 @@ public class Main_Package {
 //        int amount = 27;
 //        System.out.println(coinChange(coins, amount));
 
-        System.out.println(numSquares(12));
+//        System.out.println(numSquares(12));
+        String s = "leetcode";
+        List<String> wordDict = Arrays.asList(new String[]{"l", "eet", "code"});
+        System.out.println(wordBreak(s, wordDict));
     }
     public static int maxValue(int[][] package_value) {
         int max_value = 0;
@@ -207,15 +211,23 @@ public class Main_Package {
     }
 //  LeetCode 139.单词拆分
     public static boolean wordBreak(String s, List<String> wordDict) {
-//        int s_length = s.length();
-//        boolean[] dp = new boolean[s_length+1];
-//        dp[0] = true;
-//
-//        for (int j = 1; j <= s_length; j++) {
-//            for (int i = 0; i < j; i++) {
-//                String word = s.substring(i, j-i);
-//                if(wordDict.contains(word) && dp[i])
-//            }
-//        }
+        int s_length = s.length();
+        boolean[] dp = new boolean[s_length+1];
+        dp[0] = true;
+
+        for (int j = 1; j <= s_length; j++) {
+            for (int i = 0; i < j; i++) {
+//                i不用等于j，相等就是空字符串肯定不在wordDict里肯定是false
+                String s_i_j =  s.substring(i, j);
+                System.out.println(s_i_j);
+                if(wordDict.contains(s_i_j) && dp[i]){
+                    dp[j] = true;
+                    System.out.printf("dp[%d]: %b", j, dp[j]);
+                    System.out.println();
+                }
+            }
+            System.out.println();
+        }
+        return dp[s_length];
     }
 }
